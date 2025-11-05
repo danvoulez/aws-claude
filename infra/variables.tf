@@ -77,3 +77,30 @@ variable "db_allowed_cidr_blocks" {
   type        = list(string)
   default     = []  # Lambda functions will use security groups
 }
+
+# Cryptographic Keys
+variable "signing_key_hex" {
+  description = "Ed25519 signing key in hex format"
+  type        = string
+  sensitive   = true
+}
+
+variable "public_key_hex" {
+  description = "Ed25519 public key in hex format"
+  type        = string
+  sensitive   = false
+}
+
+# Application Configuration
+variable "app_tenant_id" {
+  description = "Application tenant ID"
+  type        = string
+  default     = "voulezvous"
+}
+
+variable "openai_api_key" {
+  description = "OpenAI API key (optional)"
+  type        = string
+  default     = ""
+  sensitive   = true
+}
