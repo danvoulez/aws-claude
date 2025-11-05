@@ -82,13 +82,22 @@ resource "aws_lambda_layer_version" "kernel_deps" {
   }
 }
 
-# Package each kernel
+# Package each kernel (includes shared db.js)
 data "archive_file" "kernel" {
   for_each = local.kernels
   
   type        = "zip"
-  source_dir  = "${path.module}/../../../src/kernels/${each.key}"
   output_path = "${path.module}/../../../.build/kernel_${each.key}.zip"
+  
+  source {
+    content  = file("${path.module}/../../../src/kernels/${each.key}/index.js")
+    filename = "index.js"
+  }
+  
+  source {
+    content  = file("${path.module}/../../../src/kernels/db.js")
+    filename = "db.js"
+  }
 }
 
 # Create Lambda function for each kernel
