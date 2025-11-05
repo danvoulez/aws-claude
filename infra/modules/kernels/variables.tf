@@ -8,13 +8,8 @@ variable "environment" {
   type        = string
 }
 
-variable "vpc_id" {
-  description = "VPC ID for Lambda deployment"
-  type        = string
-}
-
-variable "private_subnet_ids" {
-  description = "Private subnet IDs for Lambda"
+variable "subnet_ids" {
+  description = "Subnet IDs for Lambda"
   type        = list(string)
 }
 
@@ -29,8 +24,8 @@ variable "database_url" {
   sensitive   = true
 }
 
-variable "tenant_id" {
-  description = "Tenant ID"
+variable "app_tenant_id" {
+  description = "Application tenant ID"
   type        = string
   default     = "voulezvous"
 }
@@ -39,4 +34,9 @@ variable "signing_key_hex" {
   description = "Ed25519 signing key in hex format"
   type        = string
   sensitive   = true
+}
+
+variable "secrets_read_policy_arn" {
+  description = "ARN of the IAM policy for reading secrets"
+  type        = string
 }

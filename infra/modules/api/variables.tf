@@ -8,14 +8,12 @@ variable "environment" {
   type        = string
 }
 
-variable "ingest_lambda_arn" {
-  description = "ARN of the ingest Lambda function"
+variable "stage0_lambda_invoke_arn" {
+  description = "Invoke ARN of the Stage-0 Lambda function"
   type        = string
-  default     = ""
 }
 
-variable "sse_lambda_arn" {
-  description = "ARN of the SSE Lambda function"
+variable "stage0_lambda_name" {
+  description = "Name of the Stage-0 Lambda function"
   type        = string
-  default     = ""
 }

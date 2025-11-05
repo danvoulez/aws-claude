@@ -8,13 +8,8 @@ variable "environment" {
   type        = string
 }
 
-variable "vpc_id" {
-  description = "VPC ID for Lambda deployment"
-  type        = string
-}
-
-variable "private_subnet_ids" {
-  description = "Private subnet IDs for Lambda"
+variable "subnet_ids" {
+  description = "Subnet IDs for Lambda"
   type        = list(string)
 }
 
@@ -23,24 +18,8 @@ variable "lambda_security_group_id" {
   type        = string
 }
 
-variable "db_host" {
-  description = "Database hostname"
-  type        = string
-}
-
-variable "db_name" {
-  description = "Database name"
-  type        = string
-}
-
-variable "db_username" {
-  description = "Database username"
-  type        = string
-  sensitive   = true
-}
-
-variable "db_password" {
-  description = "Database password"
+variable "database_url" {
+  description = "PostgreSQL connection string"
   type        = string
   sensitive   = true
 }
@@ -51,8 +30,14 @@ variable "boot_function_id" {
   default     = "00000000-0000-4000-8000-000000000001"
 }
 
-variable "tenant_id" {
-  description = "Tenant ID"
+variable "app_user_id" {
+  description = "Application user ID"
+  type        = string
+  default     = "edge:stage0"
+}
+
+variable "app_tenant_id" {
+  description = "Application tenant ID"
   type        = string
   default     = "voulezvous"
 }
@@ -61,4 +46,9 @@ variable "signing_key_hex" {
   description = "Ed25519 signing key in hex format"
   type        = string
   sensitive   = true
+}
+
+variable "secrets_read_policy_arn" {
+  description = "ARN of the IAM policy for reading secrets"
+  type        = string
 }

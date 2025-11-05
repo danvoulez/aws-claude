@@ -21,3 +21,13 @@ db_maintenance_window     = "mon:04:00-mon:05:00"  # UTC
 
 # Network access (leave empty for Lambda-only access)
 db_allowed_cidr_blocks = []
+
+# Cryptographic Keys (generate with generate_keys.sh)
+signing_key_hex = "YOUR_SIGNING_KEY_HEX_HERE"
+public_key_hex  = "YOUR_PUBLIC_KEY_HEX_HERE"
+
+# Application Configuration
+app_tenant_id = "voulezvous"
+
+# Optional: OpenAI API Key
+openai_api_key = ""

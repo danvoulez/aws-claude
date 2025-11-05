@@ -20,6 +20,12 @@ variable "signing_key_hex" {
   sensitive   = true
 }
 
+variable "public_key_hex" {
+  description = "Ed25519 public key in hex format"
+  type        = string
+  sensitive   = false
+}
+
 variable "openai_api_key" {
   description = "OpenAI API key (optional)"
   type        = string
