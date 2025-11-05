@@ -1,0 +1,22 @@
+{
+  "name": "logline-stage0",
+  "version": "1.0.0",
+  "description": "LogLine Stage-0 Bootstrap Loader",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "logline",
+    "stage0",
+    "bootstrap"
+  ],
+  "author": "LogLine Contributors",
+  "license": "MIT",
+  "dependencies": {
+    "pg": "^8.11.3",
+    "@noble/hashes": "^1.3.3",
+    "@noble/ed25519": "^2.0.0"
+  }
+}

@@ -16,7 +16,37 @@ LogLine is a constitutional governance platform built on three inseparable princ
 - Node.js 20+
 - 20 minutes
 
-### Deployment Steps
+### One-Command Deployment (Recommended)
+
+For automated deployment with all prerequisites checked:
+
+```bash
+# Clone the repository
+git clone https://github.com/danvoulez/aws-claude.git
+cd aws-claude
+
+# Configure AWS credentials first
+aws configure
+
+# Run master deployment (validates, generates keys, deploys, tests)
+./DEPLOY_MASTER.sh
+```
+
+This script will:
+1. ✅ Validate your environment and dependencies
+2. ✅ Generate Ed25519 cryptographic keys
+3. ✅ Generate a secure database password
+4. ✅ Create `terraform.tfvars` with sensible defaults
+5. ✅ Deploy all infrastructure (database, lambdas, API, scheduler)
+6. ✅ Initialize the database schema
+7. ✅ Seed kernel functions
+8. ✅ Run deployment tests
+
+Total time: ~15-20 minutes
+
+### Manual Deployment Steps
+
+If you prefer manual control over each step:
 
 #### 1. Install Dependencies
 
@@ -113,6 +143,60 @@ VALUES
 -- Verify
 SELECT * FROM ledger.visible_timeline WHERE entity_type = 'test';
 ```
+
+## Utility Scripts
+
+The repository includes several helper scripts for deployment and management:
+
+### Deployment Scripts
+
+- **`./DEPLOY_MASTER.sh`** - One-command full deployment
+  - Validates environment
+  - Generates keys and credentials
+  - Deploys infrastructure
+  - Seeds database
+  - Runs tests
+
+- **`./validate_deployment.sh`** - Pre-deployment validation
+  - Checks file structure
+  - Verifies AWS credentials
+  - Validates Terraform configuration
+  - Checks Node.js dependencies
+
+- **`./deploy_logline.sh`** - Infrastructure deployment
+  - Deploys database
+  - Deploys Lambda functions
+  - Deploys API Gateway
+  - Initializes schema
+
+- **`./seed_kernels.sh`** - Seed kernel functions
+  - Inserts 5 core kernel spans into ledger
+  - Verifies seeding success
+
+- **`./test_deployment.sh`** - Post-deployment tests
+  - Tests database connectivity
+  - Verifies schema integrity
+  - Checks kernel seeding
+  - Validates manifest
+
+### Key Generation Scripts
+
+- **`./generate_keys.sh`** - Generate Ed25519 key pair
+  - Creates `keys/private.pem`
+  - Creates `keys/public.pem`
+  - Creates `keys/signing_keys.env` (hex-encoded)
+
+- **`./generate_db_password.sh`** - Generate secure database password
+  - Creates `keys/db_credentials.env`
+  - Uses cryptographically secure random generation
+
+### Connection Scripts
+
+- **`./connect_db.sh`** - Connect to deployed database
+  - Opens psql session
+  - Sets session variables automatically
+
+All scripts are executable and documented with inline comments.
 
 ## Infrastructure Overview
 
