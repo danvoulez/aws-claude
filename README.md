@@ -6,7 +6,58 @@ LogLine is a constitutional governance platform built on three inseparable princ
 2. **PRIVACY** - "You are important."
 3. **ACCOUNTABILITY** - "Consequences."
 
-## Quick Start
+## 🚀 Quick Start (5 Minutes)
+
+### One-Command Deployment
+
+```bash
+# 1. Generate cryptographic keys
+./generate_keys.sh
+
+# 2. Generate database password
+./generate_db_password.sh
+
+# 3. Configure Terraform
+cd infra
+cp terraform.tfvars.example terraform.tfvars
+# Edit terraform.tfvars with your keys and password
+cd ..
+
+# 4. Validate everything
+./validate_deployment.sh
+
+# 5. Deploy everything (15-20 minutes)
+./DEPLOY_MASTER.sh
+
+# 6. Run tests
+./test_deployment.sh
+```
+
+That's it! Your LogLine system is now live with:
+- ✅ PostgreSQL database with schema
+- ✅ 5 kernel Lambda functions
+- ✅ API Gateway endpoints
+- ✅ EventBridge schedulers
+- ✅ Cryptographic signing
+
+### Quick Tests
+
+```bash
+# Query the timeline
+curl "https://your-api-endpoint/api/timeline?limit=5" | jq .
+
+# Insert a test span
+curl -X POST "https://your-api-endpoint/api/spans" \
+  -H 'Content-Type: application/json' \
+  -d '{"entity_type":"test","who":"cli","this":"test"}'
+
+# View Lambda logs
+./tail_logs.sh stage0
+```
+
+---
+
+## Detailed Setup Guide
 
 ### Prerequisites
 
