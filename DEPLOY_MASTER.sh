@@ -87,6 +87,8 @@ if [ ! -f "infra/terraform.tfvars" ]; then
     source keys/db_credentials.env
     if [ -n "$DB_PASSWORD" ]; then
       # Update the tfvars with the password
+      # Note: In production, consider using environment variables or
+      # Terraform's -var-file option to avoid storing credentials in files
       sed -i.bak "s|db_password.*=.*|db_password = \"$DB_PASSWORD\"|" infra/terraform.tfvars
       rm infra/terraform.tfvars.bak 2>/dev/null || true
     fi
@@ -96,6 +98,8 @@ if [ ! -f "infra/terraform.tfvars" ]; then
     source keys/signing_keys.env
     if [ -n "$SIGNING_KEY_HEX" ]; then
       # Update the tfvars with the signing key
+      # Note: In production, consider using environment variables or
+      # Terraform's -var-file option to avoid storing credentials in files
       sed -i.bak "s|signing_key_hex.*=.*|signing_key_hex = \"$SIGNING_KEY_HEX\"|" infra/terraform.tfvars
       rm infra/terraform.tfvars.bak 2>/dev/null || true
     fi

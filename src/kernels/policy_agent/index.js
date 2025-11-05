@@ -22,7 +22,7 @@ export async function main(ctx) {
     // Check visibility policy
     if (!span.visibility || !['public', 'private', 'shared'].includes(span.visibility)) {
       await insertSpan({
-        id: crypto.randomUUID(),
+        id: ctx.crypto.randomUUID(),
         seq: 0,
         entity_type: 'policy_check',
         who: 'kernel:policy_agent',
@@ -46,7 +46,7 @@ export async function main(ctx) {
     // Check required fields
     if (!span.entity_type || !span.who || !span.this) {
       await insertSpan({
-        id: crypto.randomUUID(),
+        id: ctx.crypto.randomUUID(),
         seq: 0,
         entity_type: 'policy_check',
         who: 'kernel:policy_agent',
@@ -74,7 +74,7 @@ export async function main(ctx) {
     // Check ownership
     if (span.entity_type === 'function' && !span.owner_id) {
       await insertSpan({
-        id: crypto.randomUUID(),
+        id: ctx.crypto.randomUUID(),
         seq: 0,
         entity_type: 'policy_check',
         who: 'kernel:policy_agent',

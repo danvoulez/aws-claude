@@ -87,6 +87,12 @@ async function handleQuery(request, ctx) {
     throw new Error('No query provided');
   }
   
+  // WARNING: This executes raw SQL queries. In production, this should:
+  // 1. Validate queries against an allowlist of safe queries
+  // 2. Use parameterized queries with proper input sanitization
+  // 3. Implement additional access controls and query validation
+  // Current implementation is for demonstration purposes only
+  
   const result = await sql`${query}`;
   return { rows: result.rows };
 }

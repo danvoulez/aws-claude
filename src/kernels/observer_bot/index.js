@@ -21,7 +21,7 @@ export async function main(ctx) {
     // Check for unsigned spans that should be signed
     if (span.entity_type === 'function' && !span.signature) {
       await insertSpan({
-        id: crypto.randomUUID(),
+        id: ctx.crypto.randomUUID(),
         seq: 0,
         entity_type: 'observation',
         who: 'kernel:observer_bot',
@@ -41,7 +41,7 @@ export async function main(ctx) {
     // Check for failed operations
     if (span.status === 'error' || span.status === 'failed') {
       await insertSpan({
-        id: crypto.randomUUID(),
+        id: ctx.crypto.randomUUID(),
         seq: 0,
         entity_type: 'observation',
         who: 'kernel:observer_bot',
