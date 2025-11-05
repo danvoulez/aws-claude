@@ -1,0 +1,23 @@
+# Copy this to terraform.tfvars and fill in your values
+# DO NOT commit terraform.tfvars to git!
+
+aws_region  = "us-east-1"
+environment = "dev"
+
+# Database Configuration
+db_name     = "logline"
+db_username = "logline_admin"
+db_password = "CHANGE_ME_TO_STRONG_PASSWORD"  # Use a password manager!
+
+# Instance sizing (start small, scale up)
+db_instance_class     = "db.t4g.micro"      # ~$15/month
+db_allocated_storage  = 20                   # GB
+db_multi_az          = false                 # true for production
+
+# Backup configuration
+db_backup_retention_period = 7
+db_backup_window          = "03:00-04:00"   # UTC
+db_maintenance_window     = "mon:04:00-mon:05:00"  # UTC
+
+# Network access (leave empty for Lambda-only access)
+db_allowed_cidr_blocks = []
