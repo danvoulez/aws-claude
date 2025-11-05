@@ -40,3 +40,9 @@ variable "signing_key_hex" {
   type        = string
   sensitive   = true
 }
+
+variable "secrets_read_policy_arn" {
+  description = "ARN of the IAM policy for reading secrets"
+  type        = string
+  default     = ""
+}
